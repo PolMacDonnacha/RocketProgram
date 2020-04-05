@@ -11,8 +11,10 @@ namespace RocketProgram
         public int PayloadID { get; set; }
         public string PayloadName { get; set; }
         public int NumberOfSatellites { get; set; }
+        public string Description { get; set; }
         public string Manufacturer { get; set; }
-        public enum DestinationOrbit { SSO, LEO, GEO, GTO, POL }
+        public string DestinationOrbit { get; set; }
+        public int MissionID { get; set; }
         public virtual Mission Mission { get; set; }
     }
 }

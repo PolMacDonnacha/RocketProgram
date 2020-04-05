@@ -13,6 +13,8 @@ namespace RocketProgram
         public string RocketName { get; set; }
         public string Manufacturer { get; set; }
         public string Description { get; set; }
+        public int MissionID { get; set; }
+
         public virtual Mission Mission { get; set; }
     }
     
