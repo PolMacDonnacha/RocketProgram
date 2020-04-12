@@ -65,6 +65,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\202004051829258_InitialCreate.cs" />
+    <Compile Include="Migrations\202004051829258_InitialCreate.designer.cs">
+      <DependentUpon>202004051829258_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004112308342_AddRocket.cs" />
+    <Compile Include="Migrations\202004112308342_AddRocket.designer.cs">
+      <DependentUpon>202004112308342_AddRocket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mission.cs" />
     <Compile Include="Payload.cs" />
     <Compile Include="Rocket.cs" />
@@ -95,6 +104,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202004051829258_InitialCreate.resx">
+      <DependentUpon>202004051829258_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004112308342_AddRocket.resx">
+      <DependentUpon>202004112308342_AddRocket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -111,9 +126,7 @@
   <ItemGroup>
     <Resource Include="RocketImages\falcon9.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PayloadImages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

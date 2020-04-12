@@ -17,5 +17,12 @@ namespace RocketProgram
 
         public int RocketID { get; set; }
         public virtual List<Payload> Payloads { get; set; }
+        public virtual Rocket Rocket { get; set; }
+
+       
+        public override string ToString()
+        {
+            return ($"Mission Name: {MissionName} \nMission Description: {MissionDescription} \nLaunch Date: {LaunchDate} \nLaunch Site: {LaunchSite}");
+        }
     }
 }

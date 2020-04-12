@@ -32,7 +32,7 @@ namespace DataManagment
                     Image = "longmarch2d.jpg",
                     CountryOfOrigin = "China",
                     MissionID = 3,
-                    Mission = m3
+                    //Mission = m3
                 };
                 Payload Jilin1 = new Payload()
                 {
