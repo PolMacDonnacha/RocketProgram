@@ -24,7 +24,7 @@
         <RadioButton x:Name="radioPast" Content="Completed&#xA;Launches" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Height="38" Checked="radioPast_Checked"/>
         <TextBlock x:Name="tbxMissionInfo" HorizontalAlignment="Left" Height="123" Margin="308,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="443"/>
         <ListBox x:Name="lbxMissionInfo" HorizontalAlignment="Left" Height="107" Margin="308,287,0,0" VerticalAlignment="Top" Width="291"/>
-        <RadioButton x:Name="radioAll" Content="Upcoming&#xA;Launches" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="33" Checked="radioAll_Checked"/>
+        <RadioButton x:Name="radioAll" Content="All&#xA;Launches" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="33" Checked="radioAll_Checked"/>
 
 
     </Grid>

@@ -22,7 +22,7 @@ namespace RocketProgram
        
         public override string ToString()
         {
-            return ($"Mission Name: {MissionName} \nMission Description: {MissionDescription} \nLaunch Date: {LaunchDate} \nLaunch Site: {LaunchSite}");
+            return ($"Mission Name: {MissionName}  \nLaunch Date: {LaunchDate} ");
         }
     }
 }
