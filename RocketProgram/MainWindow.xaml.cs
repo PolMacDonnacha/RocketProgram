@@ -28,10 +28,12 @@ namespace RocketProgram
         public List<Payload> matchingpayload = new List<Payload>(); 
         public List<Mission> UpcomingMissions = new List<Mission>(); 
         public List<Mission> CompletedMissions = new List<Mission>();
-        public List<Mission> allmissions = new List<Mission>(); //= new List<Rocket>;
+        public List<Mission> allmissions = new List<Mission>(); 
 
         public List<Payload> selectedpayloads; //= new List<Payload>;
-        public int myselectedindex;
+        public int missionselectedindex;
+        public int payloadselectedindex;
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -43,86 +45,129 @@ namespace RocketProgram
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            foreach (Mission m in db.Missions)
+
+
+            PopulateLists();
+
+            LbxMission.ItemsSource = allmissions;
+            LbxMission.SelectedIndex = 0;    //set the selected item to the first item in the listbox
+            Mission m = LbxMission.SelectedItem as Mission;
+            missionselectedindex = m.MissionID - 1;
+            var mission = allmissions.ElementAt(missionselectedindex);
+            foreach (Payload pl in mission.Payloads)
             {
-                allmissions.Add(m);
+                matchingpayload.Add(pl); //add every payload item thats in the 
             }
-            foreach (Payload payload in db.Payloads)
-            {
-                allpayloads.Add(payload);
-            }
+            lbxPayload.ItemsSource = mission.Payloads;// matchingpayload;
+
+            lbxPayload.SelectedIndex = 0;
+
+            Payload p = lbxPayload.SelectedItem as Payload;
+            payloadselectedindex = lbxPayload.SelectedIndex;
+
+            
+            
+            tbxMissionInfo.Text = string.Format($"Mission Name:\t{m.MissionName} \n\nDescription:{m.MissionDescription} \n\nLaunch Date:\t{m.LaunchDate.ToShortDateString()}  \n\nLaunch Site:\t{m.LaunchSite}");
             
 
 
-            CheckDates();
-            var missionname = from m in db.Missions
-                              select m.MissionName;
-        myselectedindex = LbxMission.SelectedIndex +1;
-        LbxMission.SelectedItem = 0;
-            Mission mis = LbxMission.SelectedItem as Mission;
-   
 
-            var missionnames = missionname.ToList();
-            var mission = allmissions.ElementAt(myselectedindex );
-            var descriptionquery = from m in db.Missions
-                                     where m.MissionID -1 == myselectedindex
-                                     select m.MissionDescription;
-            LbxMission.ItemsSource = missionnames;
-            tbxMissionInfo.Text = string.Format($"Mission Name:\t{mission.MissionName} \nDescription:\t{mission.MissionDescription}  \nLaunch Date:\t{mission.LaunchDate}  \nLaunch Site:\t{mission.LaunchSite}  \nLaunch Vehicle:\t{mission.Rocket.RocketName}");
-            var payloadlist = from p in db.Payloads
-                              where p.MissionID - 1 == myselectedindex
-                              select p;
-
-            foreach (var item in payloadlist)
+            var payload = matchingpayload.ElementAt(payloadselectedindex);
+            tbxPayloadInfo.Text = string.Format($"Name:\t{p.PayloadName} \n\nDescription:\t{p.Description} \n\nManufacturer:\t{p.Manufacturer} \nDestination Orbit:\t{p.DestinationOrbit}  \nNumber Of Satellites:\t{p.NumberOfSatellites}");
+            TimeSpan timeLeft = mission.Countdown();
+            if (timeLeft.ToString().First() == '-')//if the time to launch begins with minus change to plus and show as time since launch
             {
-                matchingpayload.Add(item);
+                timeLeft = timeLeft.Negate();
+                tbxCountDown.Text = string.Format($"\tTime since launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
             }
-
-            lbxPayload.ItemsSource = matchingpayload.ElementAt(myselectedindex).PayloadName;
-
-
-      
-        }
-        public void CheckDates()
-        {
-            foreach (Mission date in db.Missions)
+            else
             {
-                int combineddate = DateTime.Today.CompareTo(date.LaunchDate);
+                tbxCountDown.Text = string.Format($"\tCountdown To Launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
+
+            }
+            tbxRocketInfo.Text = m.Rocket.ToString();
+            BitmapImage rocketimage = new BitmapImage(new Uri($"RocketImages\\{m.Rocket.Image}", UriKind.RelativeOrAbsolute));
+            imgRocket.Source = rocketimage;
+            BitmapImage payloadimage = new BitmapImage(new Uri($"PayloadImages\\{payload.Image}", UriKind.RelativeOrAbsolute));
+            imgPayload.Source = payloadimage;
+        }
+        
+        public void PopulateLists()
+        {
+            foreach (Mission m in db.Missions)
+            {
+                m.Payloads.Clear();
+                foreach (Payload p in db.Payloads)
+                {
+                    if (m.MissionID == p.MissionID)
+                    {
+                        m.Payloads.Add(p);
+                    }
+                }
+
+                
+                int combineddate = DateTime.Today.CompareTo(m.LaunchDate);
                 if(combineddate >= 0)
                 {
-                    CompletedMissions.Add(date);
+                    CompletedMissions.Add(m);
                 }
                 else
                 {
-                    UpcomingMissions.Add(date);
+                    UpcomingMissions.Add(m);
                 }
+                    allmissions.Add(m);
             }
         }
         public void LbxMission_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Mission m = LbxMission.SelectedItem as Mission;
+
+            Payload p = lbxPayload.SelectedItem as Payload;
+
+
             if (m != null)
             {
-
-                myselectedindex = LbxMission.SelectedIndex;
-                var mission = allmissions.ElementAt(myselectedindex);
+                missionselectedindex = m.MissionID -1;
+                var mission = allmissions.ElementAt(missionselectedindex);
                 tbxMissionInfo.Text = null;
-                tbxMissionInfo.Text = string.Format($"Mission Name: {mission.MissionName} \n Description: {mission.MissionDescription}  \nLaunch Date: {mission.LaunchDate}  \nLaunch Site: {mission.LaunchSite}  \nLaunch Vehicle: {mission.Rocket.RocketName}");
+                tbxMissionInfo.Text = string.Format($"Mission Name: \t{mission.MissionName}\n\nDescription: {mission.MissionDescription}  \n\nLaunch Date: {mission.LaunchDate.ToShortDateString()}  \n\nLaunch Site: {mission.LaunchSite}");
 
-                var payloadname = from p in db.Payloads
-                               where p.MissionID  == m.MissionID
-                               select p.PayloadName;
+                var payloadname = from payld in db.Payloads
+                               where payld.MissionID  == m.MissionID
+                               select payld.PayloadName;
+                matchingpayload.Clear();
+                foreach (Payload pld in mission.Payloads)
+                {
+                    matchingpayload.Add(pld);
+                }
+                lbxPayload.ItemsSource = m.Payloads;
+                payloadselectedindex = lbxPayload.SelectedIndex;
+                if(payloadselectedindex == -1)
+                {
+                    payloadselectedindex = 0;
+                }
 
-                var payloaddescription = from p in db.Payloads
-                                  where p.MissionID == m.MissionID
-                                  select p.Description;
+                var payload = m.Payloads.ElementAt(payloadselectedindex);
+                TimeSpan timeLeft = mission.Countdown();
+                if(timeLeft.ToString().First() == '-')
+                {
+                    timeLeft = timeLeft.Negate();
+                    tbxCountDown.Text = string.Format($"\tTime since launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds} ");
+                }
+                else
+                {
+                    tbxCountDown.Text = string.Format($"\tCountdown To Launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
 
-                //lbxPayload.ItemsSource = payloadname.ToList();
-                var payloadlist = from p in db.Payloads
-                                  where p.MissionID -1 == myselectedindex 
-                                  select p.PayloadName;
-                lbxPayload.ItemsSource = payloadname.ToList();
-                tbxPayloadInfo.Text = string.Format($"Payload Name: {payloadname} \nDescription: {payloaddescription}"); 
+                }
+
+
+                tbxPayloadInfo.Text = null;
+                tbxPayloadInfo.Text = string.Format($"Name:\t{payload.PayloadName} \nDescription:{payload.Description} \n\nManufacturer:\t{payload.Manufacturer} \nDestination Orbit:\t{payload.DestinationOrbit:-15}  \nNumber Of Satellites:\t{payload.NumberOfSatellites}");
+                tbxRocketInfo.Text = mission.Rocket.ToString();
+                BitmapImage rocketimage = new BitmapImage(new Uri($"RocketImages\\{m.Rocket.Image}", UriKind.RelativeOrAbsolute));
+                imgRocket.Source = rocketimage;
+                BitmapImage payloadimage = new BitmapImage(new Uri($"PayloadImages\\{payload.Image}", UriKind.RelativeOrAbsolute));
+                imgPayload.Source = payloadimage;
             }
         }
 
@@ -168,6 +213,25 @@ namespace RocketProgram
             }
             LbxMission.ItemsSource = null;
             LbxMission.ItemsSource = allmissions;
+        }
+
+        private void lbxPayload_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Mission m = LbxMission.SelectedItem as Mission;
+            Payload p = lbxPayload.SelectedItem as Payload;
+
+            payloadselectedindex = lbxPayload.SelectedIndex;
+            if (payloadselectedindex == -1)
+            {
+                payloadselectedindex = 0;
+            }
+
+            var payload = m.Payloads.ElementAt(payloadselectedindex);
+
+            tbxPayloadInfo.Text = null;
+            tbxPayloadInfo.Text = string.Format($"Name:\t{payload.PayloadName} \nDescription:{payload.Description} \n\nManufacturer:\t{payload.Manufacturer} \nDestination Orbit:\t{payload.DestinationOrbit:-15}  \nNumber Of Satellites:\t{payload.NumberOfSatellites}");
+            BitmapImage payloadimage = new BitmapImage(new Uri($"PayloadImages\\{p.Image}", UriKind.RelativeOrAbsolute));
+            imgPayload.Source = payloadimage;
         }
     }
 }

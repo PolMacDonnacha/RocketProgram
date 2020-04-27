@@ -73,6 +73,10 @@
     <Compile Include="Migrations\202004112308342_AddRocket.designer.cs">
       <DependentUpon>202004112308342_AddRocket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004271323029_AddPayloadImage.cs" />
+    <Compile Include="Migrations\202004271323029_AddPayloadImage.designer.cs">
+      <DependentUpon>202004271323029_AddPayloadImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mission.cs" />
     <Compile Include="Payload.cs" />
@@ -110,6 +114,9 @@
     <EmbeddedResource Include="Migrations\202004112308342_AddRocket.resx">
       <DependentUpon>202004112308342_AddRocket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004271323029_AddPayloadImage.resx">
+      <DependentUpon>202004271323029_AddPayloadImage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -126,7 +133,9 @@
   <ItemGroup>
     <Resource Include="RocketImages\falcon9.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="PayloadImages\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

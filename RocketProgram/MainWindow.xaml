@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RocketProgram"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="750" Width="1400" Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="dataTemplateMissions">
             <StackPanel Orientation="Vertical">
@@ -14,17 +14,20 @@
         </DataTemplate>
     </Window.Resources>
     <Grid>
-        <ListBox x:Name="LbxMission" HorizontalAlignment="Left" Height="123" Margin="100,36,0,0" VerticalAlignment="Top" Width="186" SelectionChanged="LbxMission_SelectionChanged"/>
-        <ListBox x:Name="lbxPayload" HorizontalAlignment="Left" Height="100" Margin="100,171,0,0" VerticalAlignment="Top" Width="186"/>
-        <Image x:Name="imgRocket" HorizontalAlignment="Left" Height="233" Margin="615,161,0,0" VerticalAlignment="Top" Width="136" RenderTransformOrigin="0.466,0.502"/>
-        <ComboBox HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="151"/>
-        <TextBox x:Name="tbxPayloadInfo" HorizontalAlignment="Left" Height="107" Margin="100,287,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="186"/>
-        <TextBox x:Name="tbxMission" HorizontalAlignment="Left" Height="100" Margin="308,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="291"/>
-        <RadioButton x:Name="radioUpcoming" Content="Upcoming&#xD;&#xA;Launches" HorizontalAlignment="Left" Margin="10,171,0,0" VerticalAlignment="Top" Height="33" Checked="radioUpcoming_Checked"/>
-        <RadioButton x:Name="radioPast" Content="Completed&#xA;Launches" HorizontalAlignment="Left" Margin="10,233,0,0" VerticalAlignment="Top" Height="38" Checked="radioPast_Checked"/>
-        <TextBlock x:Name="tbxMissionInfo" HorizontalAlignment="Left" Height="123" Margin="308,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="443"/>
-        <ListBox x:Name="lbxMissionInfo" HorizontalAlignment="Left" Height="107" Margin="308,287,0,0" VerticalAlignment="Top" Width="291"/>
-        <RadioButton x:Name="radioAll" Content="All&#xA;Launches" HorizontalAlignment="Left" Margin="13,103,0,0" VerticalAlignment="Top" Height="33" Checked="radioAll_Checked"/>
+        <ListBox x:Name="LbxMission" HorizontalAlignment="Left" Height="150" Margin="100,50,0,0" VerticalAlignment="Top" Width="300" SelectionChanged="LbxMission_SelectionChanged"/>
+        <ListBox x:Name="lbxPayload" HorizontalAlignment="Left" Height="150" Margin="100,250,0,0" VerticalAlignment="Top" Width="300" SelectionChanged="lbxPayload_SelectionChanged"/>
+        <Image x:Name="imgRocket" HorizontalAlignment="Left" Height="350" Margin="1050,250,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.466,0.502"/>
+        <ComboBox HorizontalAlignment="Left" Margin="100,10,0,0" VerticalAlignment="Top" Width="150"/>
+        <TextBox x:Name="tbxPayloadInfo" HorizontalAlignment="Left" Height="150" Margin="450,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550"/>
+        <RadioButton x:Name="radioUpcoming" Content="Upcoming&#xD;&#xA;Launches" HorizontalAlignment="Left" Margin="15,300,0,0" VerticalAlignment="Top" Height="33" Checked="radioUpcoming_Checked"/>
+        <RadioButton x:Name="radioPast" Content="Completed&#xA;Launches" HorizontalAlignment="Left" Margin="15,350,0,0" VerticalAlignment="Top" Height="38" Checked="radioPast_Checked"/>
+        <TextBlock x:Name="tbxMissionInfo" HorizontalAlignment="Left" Height="150" Margin="450,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550"/>
+        <RadioButton x:Name="radioAll" Content="All&#xA;Launches" HorizontalAlignment="Left" Margin="15,250,0,0" VerticalAlignment="Top" Height="33" Checked="radioAll_Checked"/>
+        <TextBox x:Name="tbxRocketInfo" HorizontalAlignment="Left" Height="150" Margin="450,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="550"/>
+        <Image x:Name="imgPayload" HorizontalAlignment="Left" Height="213" Margin="100,450,0,0" VerticalAlignment="Top" Width="250" RenderTransformOrigin="0.466,0.502"/>
+        <TextBox x:Name="tbxCountDown" HorizontalAlignment="Left" Height="150" Margin="1050,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250"/>
+        <Label x:Name="Lbl_PayloadInfo" Content="Payload Information" HorizontalAlignment="Left" Margin="450,224,0,0" VerticalAlignment="Top" Width="550"/>
+        <Label x:Name="Lbl_Payloads" Content="Patloads on selected mission" HorizontalAlignment="Left" Margin="100,224,0,0" VerticalAlignment="Top" Width="300"/>
 
 
     </Grid>

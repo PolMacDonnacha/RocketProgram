@@ -17,7 +17,11 @@ namespace RocketProgram
         public string CountryOfOrigin { get; set; }
         public int MissionID { get; set; }
 
-        //public virtual Mission Mission { get; set; }
+
+        public override string ToString()
+        {
+            return ($"Rocket Name: {RocketName} \nManufacturer: {Manufacturer} \nDescription: {Description} \nCountry of Origin: {CountryOfOrigin}");
+        }
     }
     
 

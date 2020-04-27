@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace RocketProgram
 {
@@ -20,9 +21,14 @@ namespace RocketProgram
         public virtual Rocket Rocket { get; set; }
 
        
+        public TimeSpan Countdown()
+        {
+            TimeSpan timeLeft = LaunchDate - DateTime.Now;
+            return timeLeft;
+        }
         public override string ToString()
         {
-            return ($"Mission Name: {MissionName}  \nLaunch Date: {LaunchDate} ");
+            return ($"Mission Name: {MissionName}  \nLaunch Date: {LaunchDate.ToShortDateString()} ");
         }
     }
 }

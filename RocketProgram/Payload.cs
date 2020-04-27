@@ -15,11 +15,14 @@ namespace RocketProgram
         public string Manufacturer { get; set; }
         public string DestinationOrbit { get; set; }
         public int MissionID { get; set; }
+        public string Image { get; set; }
+
         public virtual Mission Mission { get; set; }
 
         public override string ToString()
         {
-            return ($"Payload ID: {PayloadID} \nPayload Name: {PayloadName} \nNumber of Satelites: {NumberOfSatellites} \nDescription: {Description} \nManufacturer: {Manufacturer} \nDestination Orbit: {DestinationOrbit}");
+            //return ($"Payload ID: {PayloadID} \nPayload Name: {PayloadName} \nNumber of Satelites: {NumberOfSatellites} \nDescription: {Description} \nManufacturer: {Manufacturer} \nDestination Orbit: {DestinationOrbit}");
+            return ($"Payload Name: {PayloadName}");
         }
 
     }
