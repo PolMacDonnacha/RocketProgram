@@ -15,48 +15,57 @@ namespace DataManagment
 
             using(mdb)
             {
-                Mission m3 = new Mission() 
-                {   MissionID = 3,
-                    MissionName = "Jilin 1, NuSat 7 & NuSat 8",
-                    MissionDescription = "A Chinese Long March 2D launched a small satellite for the Jilin 1 Earth observation constellation owned by Chang Guang Satellite Technology Co. Ltd. The Long March 2D also launched the ÑuSat 7 and ÑuSat 8 Earth observation microsatellites for Satellogic, a company based on Argentina.",
-                    LaunchDate = new DateTime(2020,01,15),
-                    LaunchSite = "Taiyuan, China",
-                    RocketID = 3
+                Mission m7 = new Mission() 
+                {   MissionID = 7,
+                    MissionName = "Mars 2020",
+                    MissionDescription = "A United Launch Alliance Atlas 5 rocket will launch NASA’s Mars 2020 rover to the Red Planet. After landing in February 2021, the Mars 2020 rover will study Martian geology, search for organic compounds, demonstrate the ability to generate oxygen from atmospheric carbon dioxide, and collect rock samples for return to Earth by a future mission.",
+                    LaunchDate = new DateTime(2020,07,17),
+                    LaunchSite = "SLC-41, Cape Canaveral Air Force Station, Florida",
+                    RocketID = 6
                 };
-                Rocket LongMarch2D = new Rocket()
+               /* Mission m7 = new Mission()
                 {
-                    RocketID = 3,
-                    RocketName = "Long March 2D",
-                    Manufacturer = "China Academy of Launch Vehicle Technology",
-                    Description = "The Long March 2D, also known as the Chang Zheng 2D, CZ-2D and LM-2D, is a Chinese orbital carrier rocket. It is a 2-stage carrier rocket mainly used for launching LEO and SSO satellites. It is most commonly used to launch FSW-2 and -3 reconnaissance satellites.",
-                    Image = "longmarch2d.jpg",
-                    CountryOfOrigin = "China",
-                    MissionID = 3,
-                    //Mission = m3
+                    MissionID = 7,
+                    MissionName = "Noor",
+                    MissionDescription = "A SpaceX Falcon 9 rocket launched the seventh batch of approximately 60 satellites for SpaceX’s Starlink broadband network, a mission designated Starlink 6.",
+                    LaunchDate = new DateTime(2020, 04, 22),
+                    LaunchSite = "Shahroud Missile Range, Iran",
+                    RocketID = 4
                 };
-                Payload Jilin1 = new Payload()
+                Rocket Qased = new Rocket()
                 {
-                    PayloadID = 3,
-                    PayloadName = "Jilin 1",
+                    RocketID = 4,
+                    RocketName = "Qased",
+                    Manufacturer = "Iran’s Revolutionary Guard Corps",
+                    Description = "Qased is the third Iranian space launcher. It is apparently based on the Shahab-3 SRBM or Emad SRBM missile similar in size to the Safir rocket. Qased has been described as a three stage launch vehicle using liquid- and solid-fueled stages.",
+                    Image = "qased.jpg",
+                    CountryOfOrigin = "Iran",
+                };*/
+                Payload marsrover = new Payload()
+                {
+                    PayloadID = 10,
+                    PayloadName = "Mars Perseverance Rover",
                     NumberOfSatellites = 1,
-                    Manufacturer = "Chang Guang Satellite Technology Co.",
-                    DestinationOrbit = "Sun Synchronous Orbit",
-                    Description = "Jilin-1 Optical-A is an high-definition optical satellite with a 0.72 m resolution pan-chromatic camera and 4 m resolution multi-spectral camera.",
-                    MissionID = 3,
-                    Mission = m3
+                    Manufacturer = "NASA",
+                    DestinationOrbit = "Jezero rater, Mars",
+                    Description = "Perserverance will search for signs of ancient life on Mars, collect the first rock samples to be returned to Earth anddd demonstrate the ability to convert CO2 into oxygen on the Red Planet",
+                    MissionID = 7,
+                    Mission = m7,
+                    Image="marsrover.jpg"
                 };
-                Payload Nusat7 = new Payload()
+                Payload ingenuity = new Payload()
                 {
-                    PayloadID = 4,
-                    PayloadName = "NuSat 7",
+                    PayloadID = 11,
+                    PayloadName = "Ingenuity Helicopter",
                     NumberOfSatellites = 1,
-                    Manufacturer = "Satellogic",
-                    DestinationOrbit = "Sun Synchronous Orbit",
-                    Description = "NuSat satellites are equipped with an imaging system operating in visible light and infrared. The constellation will allow for commercially available real-time Earth imaging and video with a ground resolution of 3.3 ft (1 m).",
-                    MissionID = 3,
-                    Mission = m3
+                    Manufacturer = "NASA",
+                    DestinationOrbit = "Jezero Crater, Mars",
+                    Description = "Ingenuity's mission is to perform the first ever powered flight on another world and to help plan driving routes for rovers.",
+                    MissionID = 7,
+                    Mission = m7,
+                    Image = "ingenuity.jpg"
                 };
-                Payload Nusat8 = new Payload()
+                /*Payload Nusat8 = new Payload()
                 {
                     PayloadID = 5,
                     PayloadName = "NuSat 8",
@@ -65,15 +74,17 @@ namespace DataManagment
                     DestinationOrbit = "Sun Synchronous Orbit",
                     Description = "NuSat satellites are equipped with an imaging system operating in visible light and infrared. The constellation will allow for commercially available real-time Earth imaging and video with a ground resolution of 3.3 ft (1 m).",
                     MissionID = 3,
-                    Mission = m3
-                };
-                mdb.Missions.Add(m3);
+                    Mission = m3,
+                    Image = "starlink.jpg"
+                };*/
+                mdb.Missions.Add(m7);
+              //  mdb.Missions.Add(m7);
 
-                mdb.Rockets.Add(LongMarch2D);
+                //mdb.Rockets.Add(electron);
 
-                mdb.Payloads.Add(Jilin1);
-                mdb.Payloads.Add(Nusat7);
-                mdb.Payloads.Add(Nusat8);
+                mdb.Payloads.Add(marsrover);
+                mdb.Payloads.Add(ingenuity);
+              //  mdb.Payloads.Add(Nusat8);
 
                 mdb.SaveChanges();
                 Console.WriteLine("Saved to database");

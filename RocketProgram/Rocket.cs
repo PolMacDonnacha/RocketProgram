@@ -15,7 +15,6 @@ namespace RocketProgram
         public string Description { get; set; }
         public string Image { get; set; }
         public string CountryOfOrigin { get; set; }
-        public int MissionID { get; set; }
 
 
         public override string ToString()

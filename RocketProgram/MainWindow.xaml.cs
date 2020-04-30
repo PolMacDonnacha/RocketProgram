@@ -45,8 +45,6 @@ namespace RocketProgram
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-
-
             PopulateLists();
 
             LbxMission.ItemsSource = allmissions;
@@ -58,32 +56,28 @@ namespace RocketProgram
             {
                 matchingpayload.Add(pl); //add every payload item thats in the 
             }
-            lbxPayload.ItemsSource = mission.Payloads;// matchingpayload;
+            lbxPayload.ItemsSource = mission.Payloads;// set listbox to display the list of satellites for the selected mission;
 
             lbxPayload.SelectedIndex = 0;
 
             Payload p = lbxPayload.SelectedItem as Payload;
             payloadselectedindex = lbxPayload.SelectedIndex;
-
-            
             
             tbxMissionInfo.Text = string.Format($"Mission Name:\t{m.MissionName} \n\nDescription:{m.MissionDescription} \n\nLaunch Date:\t{m.LaunchDate.ToShortDateString()}  \n\nLaunch Site:\t{m.LaunchSite}");
-            
-
-
-
+     
             var payload = matchingpayload.ElementAt(payloadselectedindex);
             tbxPayloadInfo.Text = string.Format($"Name:\t{p.PayloadName} \n\nDescription:\t{p.Description} \n\nManufacturer:\t{p.Manufacturer} \nDestination Orbit:\t{p.DestinationOrbit}  \nNumber Of Satellites:\t{p.NumberOfSatellites}");
             TimeSpan timeLeft = mission.Countdown();
             if (timeLeft.ToString().First() == '-')//if the time to launch begins with minus change to plus and show as time since launch
             {
+                lblCountdown.Content = "Time Since Launch";
                 timeLeft = timeLeft.Negate();
-                tbxCountDown.Text = string.Format($"\tTime since launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
+                tbxCountDown.Text = string.Format($"{timeLeft.Days} days  {timeLeft.Hours} hours  {timeLeft.Minutes} minutes  {timeLeft.Seconds} seconds");
             }
             else
             {
-                tbxCountDown.Text = string.Format($"\tCountdown To Launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
-
+                lblCountdown.Content = "Countdown to Launch";
+                tbxCountDown.Text = string.Format($"{timeLeft.Days} days  {timeLeft.Hours} hours  {timeLeft.Minutes} minutes  {timeLeft.Seconds} seconds");
             }
             tbxRocketInfo.Text = m.Rocket.ToString();
             BitmapImage rocketimage = new BitmapImage(new Uri($"RocketImages\\{m.Rocket.Image}", UriKind.RelativeOrAbsolute));
@@ -151,12 +145,14 @@ namespace RocketProgram
                 TimeSpan timeLeft = mission.Countdown();
                 if(timeLeft.ToString().First() == '-')
                 {
+                    lblCountdown.Content = "Time Since Launch";
                     timeLeft = timeLeft.Negate();
-                    tbxCountDown.Text = string.Format($"\tTime since launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds} ");
+                    tbxCountDown.Text = string.Format($"{timeLeft.Days} days  {timeLeft.Hours} hours  {timeLeft.Minutes} minutes  {timeLeft.Seconds} seconds");
                 }
                 else
                 {
-                    tbxCountDown.Text = string.Format($"\tCountdown To Launch\nDays\tHours\tMinutes\tSeconds\n{timeLeft.Days}\t{timeLeft.Hours}\t{timeLeft.Minutes}\t{timeLeft.Seconds}");
+                    lblCountdown.Content = "Countdown to Launch";
+                    tbxCountDown.Text = string.Format($"{timeLeft.Days} days  {timeLeft.Hours} hours  {timeLeft.Minutes} minutes  {timeLeft.Seconds} seconds");
 
                 }
 
@@ -185,6 +181,7 @@ namespace RocketProgram
 
             LbxMission.ItemsSource = null;
             LbxMission.ItemsSource = UpcomingMissions;
+            LbxMission.SelectedIndex = 0;
         }
 
         public void radioPast_Checked(object sender, RoutedEventArgs e)
@@ -201,6 +198,7 @@ namespace RocketProgram
 
             LbxMission.ItemsSource = null;
             LbxMission.ItemsSource = CompletedMissions;
+            LbxMission.SelectedIndex = 0;
         }
 
         private void radioAll_Checked(object sender, RoutedEventArgs e)
@@ -213,25 +211,33 @@ namespace RocketProgram
             }
             LbxMission.ItemsSource = null;
             LbxMission.ItemsSource = allmissions;
+            LbxMission.SelectedIndex = 0;
         }
 
         private void lbxPayload_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Mission m = LbxMission.SelectedItem as Mission;
-            Payload p = lbxPayload.SelectedItem as Payload;
+            /*Payload p = lbxPayload.SelectedItem as Payload;
+            if(p != null)
+            {*/
+                payloadselectedindex = lbxPayload.SelectedIndex;
+                if (payloadselectedindex == -1)
+                {
+                    payloadselectedindex = 0;
+                }
+                if (m != null)
+                {
+                    var payload = m.Payloads.ElementAt(payloadselectedindex);
 
-            payloadselectedindex = lbxPayload.SelectedIndex;
-            if (payloadselectedindex == -1)
-            {
-                payloadselectedindex = 0;
-            }
 
-            var payload = m.Payloads.ElementAt(payloadselectedindex);
 
-            tbxPayloadInfo.Text = null;
-            tbxPayloadInfo.Text = string.Format($"Name:\t{payload.PayloadName} \nDescription:{payload.Description} \n\nManufacturer:\t{payload.Manufacturer} \nDestination Orbit:\t{payload.DestinationOrbit:-15}  \nNumber Of Satellites:\t{payload.NumberOfSatellites}");
-            BitmapImage payloadimage = new BitmapImage(new Uri($"PayloadImages\\{p.Image}", UriKind.RelativeOrAbsolute));
-            imgPayload.Source = payloadimage;
+                    tbxPayloadInfo.Text = null;
+                    tbxPayloadInfo.Text = string.Format($"Name:\t{payload.PayloadName} \nDescription:{payload.Description} \n\nManufacturer:\t{payload.Manufacturer} \nDestination Orbit:\t{payload.DestinationOrbit:-15}  \nNumber Of Satellites:\t{payload.NumberOfSatellites}");
+                    BitmapImage payloadimage = new BitmapImage(new Uri($"PayloadImages\\{payload.Image}", UriKind.RelativeOrAbsolute));
+                    imgPayload.Source = payloadimage;
+                }
+           // }
+           
         }
     }
 }

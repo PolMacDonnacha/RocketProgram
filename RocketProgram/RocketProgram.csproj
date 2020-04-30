@@ -77,6 +77,10 @@
     <Compile Include="Migrations\202004271323029_AddPayloadImage.designer.cs">
       <DependentUpon>202004271323029_AddPayloadImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004282209247_RemoveMissionID.cs" />
+    <Compile Include="Migrations\202004282209247_RemoveMissionID.designer.cs">
+      <DependentUpon>202004282209247_RemoveMissionID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Mission.cs" />
     <Compile Include="Payload.cs" />
@@ -117,6 +121,9 @@
     <EmbeddedResource Include="Migrations\202004271323029_AddPayloadImage.resx">
       <DependentUpon>202004271323029_AddPayloadImage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004282209247_RemoveMissionID.resx">
+      <DependentUpon>202004282209247_RemoveMissionID.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -131,10 +138,26 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="PayloadImages\noor.jpg" />
+    <Resource Include="PayloadImages\nusat.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="RocketImages\falcon9.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="PayloadImages\" />
+    <Resource Include="RocketImages\longmarch2d.jpg" />
+    <Resource Include="RocketImages\longmarch3b.jpg" />
+    <Resource Include="RocketImages\qased.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\jilin.jpg" />
+    <Resource Include="PayloadImages\starlink.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RocketImages\electron.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\andesite.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
