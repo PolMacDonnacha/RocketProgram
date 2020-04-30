@@ -159,6 +159,21 @@
   <ItemGroup>
     <Resource Include="PayloadImages\andesite.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RocketImages\atlas.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\tjs.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\marsrover.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\ingenuity.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PayloadImages\nrosat.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
