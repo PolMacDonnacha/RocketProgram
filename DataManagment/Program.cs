@@ -15,7 +15,8 @@ namespace DataManagment
 
             using(mdb)
             {
-                Mission m8 = new Mission() 
+
+               /* Mission m8 = new Mission() 
                 {   MissionID = 8,
                     MissionName = "Crew Dragon Demo-2",
                     MissionDescription = "SpaceX will launch NASA Astronauts Doug Hurley and Bob Behnken to the International Space Station. This will be the first crewed flight of American rockets from American soil since 2011.",
@@ -23,7 +24,7 @@ namespace DataManagment
                     LaunchSite = "LC-39A, Kennedy Space Center, Florida",
                     RocketID = 1
                 };
-               /* Mission m7 = new Mission()
+                Mission m7 = new Mission()
                 {
                     MissionID = 7,
                     MissionName = "Noor",
@@ -50,11 +51,11 @@ namespace DataManagment
                     DestinationOrbit = "International Space Station",
                     Description = "NASA Astroauts Doug Hurley & Bob Behnken will spend up to 110 days aboard the international space station",
                     MissionID = 8,
-                    Mission = m8,
+                   
                     Image="dougbob.jpg"
                 };
                 
-                /*Payload Nusat8 = new Payload()
+               /* Payload Nusat8 = new Payload()
                 {
                     PayloadID = 5,
                     PayloadName = "NuSat 8",
@@ -66,16 +67,20 @@ namespace DataManagment
                     Mission = m3,
                     Image = "starlink.jpg"
                 };*/
-                mdb.Missions.Add(m8);
-              //  mdb.Missions.Add(m7);
+                
+               // mdb.Missions.Add(m8);
+                //  mdb.Missions.Add(m7);
 
                 //mdb.Rockets.Add(electron);
 
-                mdb.Payloads.Add(dougbob);
-              //  mdb.Payloads.Add(Nusat8);
+                 mdb.Payloads.Add(dougbob);
+                //  mdb.Payloads.Add(Nusat8);
 
-                mdb.SaveChanges();
+                 mdb.SaveChanges();
+               
+
                 Console.WriteLine("Saved to database");
+
             }
 
         }

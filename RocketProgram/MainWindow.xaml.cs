@@ -123,7 +123,15 @@ namespace RocketProgram
 
             if (m != null)
             {
-                missionselectedindex = m.MissionID -1;
+                if(m.MissionID == 19)
+                {
+                    missionselectedindex = 9;
+                }
+                else
+                {
+                     missionselectedindex = m.MissionID -1;
+                }
+               
                 var mission = allmissions.ElementAt(missionselectedindex);
                 tbxMissionInfo.Text = null;
                 tbxMissionInfo.Text = string.Format($"Mission Name \n{mission.MissionName}\n\n Launch Date\n{mission.LaunchDate.ToShortDateString()}  \n\nLaunch Site\n{mission.LaunchSite}");
