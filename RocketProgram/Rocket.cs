@@ -19,7 +19,7 @@ namespace RocketProgram
 
         public override string ToString()
         {
-            return ($"Rocket Name: {RocketName} \nManufacturer: {Manufacturer} \nDescription: {Description} \nCountry of Origin: {CountryOfOrigin}");
+            return ($"Rocket Name\n{RocketName} \n\nManufacturer\n{Manufacturer} \n\nCountry of Origin:\t{CountryOfOrigin}");
         }
     }
     

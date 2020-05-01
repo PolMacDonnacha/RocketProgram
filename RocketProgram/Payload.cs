@@ -22,7 +22,7 @@ namespace RocketProgram
         public override string ToString()
         {
             //return ($"Payload ID: {PayloadID} \nPayload Name: {PayloadName} \nNumber of Satelites: {NumberOfSatellites} \nDescription: {Description} \nManufacturer: {Manufacturer} \nDestination Orbit: {DestinationOrbit}");
-            return ($"Payload Name: {PayloadName}");
+            return ($"{PayloadName}");
         }
 
     }

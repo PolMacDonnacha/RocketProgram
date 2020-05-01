@@ -28,7 +28,7 @@ namespace RocketProgram
         }
         public override string ToString()
         {
-            return ($"Mission Name: {MissionName}  \nLaunch Date: {LaunchDate.ToShortDateString()} ");
+            return ($"{MissionName}");
         }
     }
 }

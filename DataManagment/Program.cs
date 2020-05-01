@@ -15,13 +15,13 @@ namespace DataManagment
 
             using(mdb)
             {
-                Mission m7 = new Mission() 
-                {   MissionID = 7,
-                    MissionName = "Mars 2020",
-                    MissionDescription = "A United Launch Alliance Atlas 5 rocket will launch NASA’s Mars 2020 rover to the Red Planet. After landing in February 2021, the Mars 2020 rover will study Martian geology, search for organic compounds, demonstrate the ability to generate oxygen from atmospheric carbon dioxide, and collect rock samples for return to Earth by a future mission.",
-                    LaunchDate = new DateTime(2020,07,17),
-                    LaunchSite = "SLC-41, Cape Canaveral Air Force Station, Florida",
-                    RocketID = 6
+                Mission m8 = new Mission() 
+                {   MissionID = 8,
+                    MissionName = "Crew Dragon Demo-2",
+                    MissionDescription = "SpaceX will launch NASA Astronauts Doug Hurley and Bob Behnken to the International Space Station. This will be the first crewed flight of American rockets from American soil since 2011.",
+                    LaunchDate = new DateTime(2020,05,27),
+                    LaunchSite = "LC-39A, Kennedy Space Center, Florida",
+                    RocketID = 1
                 };
                /* Mission m7 = new Mission()
                 {
@@ -41,30 +41,19 @@ namespace DataManagment
                     Image = "qased.jpg",
                     CountryOfOrigin = "Iran",
                 };*/
-                Payload marsrover = new Payload()
+                Payload dougbob = new Payload()
                 {
-                    PayloadID = 10,
-                    PayloadName = "Mars Perseverance Rover",
-                    NumberOfSatellites = 1,
+                    PayloadID = 12,
+                    PayloadName = "Doug Hurley & Bob Behnken",
+                    NumberOfSatellites = 2,
                     Manufacturer = "NASA",
-                    DestinationOrbit = "Jezero rater, Mars",
-                    Description = "Perserverance will search for signs of ancient life on Mars, collect the first rock samples to be returned to Earth anddd demonstrate the ability to convert CO2 into oxygen on the Red Planet",
-                    MissionID = 7,
-                    Mission = m7,
-                    Image="marsrover.jpg"
+                    DestinationOrbit = "International Space Station",
+                    Description = "NASA Astroauts Doug Hurley & Bob Behnken will spend up to 110 days aboard the international space station",
+                    MissionID = 8,
+                    Mission = m8,
+                    Image="dougbob.jpg"
                 };
-                Payload ingenuity = new Payload()
-                {
-                    PayloadID = 11,
-                    PayloadName = "Ingenuity Helicopter",
-                    NumberOfSatellites = 1,
-                    Manufacturer = "NASA",
-                    DestinationOrbit = "Jezero Crater, Mars",
-                    Description = "Ingenuity's mission is to perform the first ever powered flight on another world and to help plan driving routes for rovers.",
-                    MissionID = 7,
-                    Mission = m7,
-                    Image = "ingenuity.jpg"
-                };
+                
                 /*Payload Nusat8 = new Payload()
                 {
                     PayloadID = 5,
@@ -77,13 +66,12 @@ namespace DataManagment
                     Mission = m3,
                     Image = "starlink.jpg"
                 };*/
-                mdb.Missions.Add(m7);
+                mdb.Missions.Add(m8);
               //  mdb.Missions.Add(m7);
 
                 //mdb.Rockets.Add(electron);
 
-                mdb.Payloads.Add(marsrover);
-                mdb.Payloads.Add(ingenuity);
+                mdb.Payloads.Add(dougbob);
               //  mdb.Payloads.Add(Nusat8);
 
                 mdb.SaveChanges();
