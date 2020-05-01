@@ -123,14 +123,10 @@ namespace RocketProgram
 
             if (m != null)
             {
-                if(m.MissionID == 19)
-                {
-                    missionselectedindex = 9;
-                }
-                else
-                {
+
+          
                      missionselectedindex = m.MissionID -1;
-                }
+                
                
                 var mission = allmissions.ElementAt(missionselectedindex);
                 tbxMissionInfo.Text = null;
